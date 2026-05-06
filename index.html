@@ -11,7 +11,7 @@
         }
 
         .form-container {
-            width: 320px;
+            width: 350px;
             margin: 50px auto;
             padding: 20px;
             background: white;
@@ -44,11 +44,21 @@
             background-color: #218838;
         }
 
-        #resultado {
+        table {
+            width: 100%;
             margin-top: 20px;
-            padding: 10px;
-            background-color: #e9f7ef;
-            border-radius: 5px;
+            border-collapse: collapse;
+        }
+
+        th, td {
+            border: 1px solid #ccc;
+            padding: 8px;
+            text-align: center;
+        }
+
+        th {
+            background-color: #28a745;
+            color: white;
         }
     </style>
 </head>
@@ -70,7 +80,18 @@
         <button type="submit">Enviar</button>
     </form>
 
-    <div id="resultado"></div>
+    <!-- Tabla -->
+    <table id="tablaDatos">
+        <thead>
+            <tr>
+                <th>Nombre</th>
+                <th>Apellido</th>
+                <th>Teléfono</th>
+            </tr>
+        </thead>
+        <tbody>
+        </tbody>
+    </table>
 </div>
 
 <script>
@@ -81,14 +102,16 @@ document.getElementById("contactForm").addEventListener("submit", function(e) {
     let apellido = document.getElementById("apellido").value;
     let telefono = document.getElementById("telefono").value;
 
-    let resultado = document.getElementById("resultado");
+    let tabla = document.getElementById("tablaDatos").getElementsByTagName("tbody")[0];
 
-    resultado.innerHTML = `
-        <h3>Datos ingresados:</h3>
-        <p><strong>Nombre:</strong> ${nombre}</p>
-        <p><strong>Apellido:</strong> ${apellido}</p>
-        <p><strong>Teléfono:</strong> ${telefono}</p>
-    `;
+    let nuevaFila = tabla.insertRow();
+
+    nuevaFila.insertCell(0).textContent = nombre;
+    nuevaFila.insertCell(1).textContent = apellido;
+    nuevaFila.insertCell(2).textContent = telefono;
+
+    // Limpiar formulario
+    document.getElementById("contactForm").reset();
 });
 </script>
 
