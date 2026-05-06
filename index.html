@@ -3,29 +3,94 @@
 <head>
     <meta charset="UTF-8">
     <title>Formulario de Contacto</title>
-    <link rel="stylesheet" href="styles.css">
+
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #f0f0f0;
+        }
+
+        .form-container {
+            width: 320px;
+            margin: 50px auto;
+            padding: 20px;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 0 10px rgba(0,0,0,0.2);
+        }
+
+        label {
+            display: block;
+            margin-top: 10px;
+        }
+
+        input {
+            width: 100%;
+            padding: 8px;
+            margin-top: 5px;
+        }
+
+        button {
+            width: 100%;
+            margin-top: 15px;
+            padding: 10px;
+            background-color: #28a745;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        button:hover {
+            background-color: #218838;
+        }
+
+        #resultado {
+            margin-top: 20px;
+            padding: 10px;
+            background-color: #e9f7ef;
+            border-radius: 5px;
+        }
+    </style>
 </head>
 <body>
 
-    <div class="form-container">
-        <h2>Contacto</h2>
+<div class="form-container">
+    <h2>Contacto</h2>
 
-        <form id="contactForm">
-            <label>Nombre:</label>
-            <input type="text" id="nombre" required>
+    <form id="contactForm">
+        <label>Nombre:</label>
+        <input type="text" id="nombre" required>
 
-            <label>Apellido:</label>
-            <input type="text" id="apellido" required>
+        <label>Apellido:</label>
+        <input type="text" id="apellido" required>
 
-            <label>Teléfono:</label>
-            <input type="tel" id="telefono" required>
+        <label>Teléfono:</label>
+        <input type="tel" id="telefono" required>
 
-            <button type="submit">Enviar</button>
-        </form>
+        <button type="submit">Enviar</button>
+    </form>
 
-        <p id="mensaje"></p>
-    </div>
+    <div id="resultado"></div>
+</div>
 
-    <script src="app.js"></script>
+<script>
+document.getElementById("contactForm").addEventListener("submit", function(e) {
+    e.preventDefault();
+
+    let nombre = document.getElementById("nombre").value;
+    let apellido = document.getElementById("apellido").value;
+    let telefono = document.getElementById("telefono").value;
+
+    let resultado = document.getElementById("resultado");
+
+    resultado.innerHTML = `
+        <h3>Datos ingresados:</h3>
+        <p><strong>Nombre:</strong> ${nombre}</p>
+        <p><strong>Apellido:</strong> ${apellido}</p>
+        <p><strong>Teléfono:</strong> ${telefono}</p>
+    `;
+});
+</script>
+
 </body>
 </html>
